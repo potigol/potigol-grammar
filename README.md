@@ -1,4 +1,4 @@
-grammar
-=======
+potigol-grammar
+===============
 
 Gramática da linguagem Potigol
