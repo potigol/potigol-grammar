@@ -35,10 +35,10 @@ prog:  inst (NL* inst)* ;
 
 inst: decl | expr | cmd;
 
-cmd : 'escreva' expr      # escreva
-    | 'imprima' expr      # imprima
-    | id1 ':=' expr     # atrib_simples
-    | id2 ':=' expr2    # atrib_multipla
+cmd : 'escreva' expr                  # escreva
+    | 'imprima' expr                  # imprima
+    | id1 ':=' expr                   # atrib_simples
+    | id2 ':=' expr2                  # atrib_multipla
     | expr'['expr']' ('='|':=') expr  # set_vetor
     ;
 
@@ -57,8 +57,8 @@ decl_funcao:
     ;
 
 decl_tipo:
-      'tipo' ID '=' tipo                    # alias
-    | 'tipo' ID (dcl|decl_funcao)+ 'fim'      # classe
+      'tipo' ID '=' tipo                          # alias
+    | 'tipo' ID (dcl|decl_funcao)+ 'fim'          # classe
     ;
 
 dcl: id1 ':' tipo ;
@@ -76,49 +76,49 @@ tipo: ID                                # tipo_simples
     ;
 
 expr:
-      ID                                  # id
-    | STRING                              # texto
-    | INT                                 # inteiro
-    | FLOAT                               # real
-    | CHAR                                # char
-    | expr '.' ID ('(' expr1 ')')?        # chamada_metodo
-    | expr '(' expr1? ')'                 # chamada_funcao
-    | expr '[' expr ']'                   # get_vetor
-    | expr '^'<assoc=right> expr          # expoente
-    | expr '::'<assoc=right> expr         # cons
-    | expr 'formato' expr                 # formato
-    | ('+'|'-') expr                      # mais_menos_unario
-    | expr ('*'|'/'|'mod') expr           # mult_div
-    | expr ('+'|'-') expr                 # soma_sub
+      ID                                        # id
+    | STRING                                    # texto
+    | INT                                       # inteiro
+    | FLOAT                                     # real
+    | CHAR                                      # char
+    | expr '.' ID ('(' expr1 ')')?              # chamada_metodo
+    | expr '(' expr1? ')'                       # chamada_funcao
+    | expr '[' expr ']'                         # get_vetor
+    | expr '^'<assoc=right> expr                # expoente
+    | expr '::'<assoc=right> expr               # cons
+    | expr 'formato' expr                       # formato
+    | ('+'|'-') expr                            # mais_menos_unario
+    | expr ('*'|'/'|'mod') expr                 # mult_div
+    | expr ('+'|'-') expr                       # soma_sub
     | expr ('>'|'>='|'<'|'<='|'=='|'<>') expr   # comparacao
-    | ('nao'|'n\u00e3o') expr             # nao_logico
-    | expr 'e' expr                       # e_logico
-    | expr 'ou' expr                      # ou_logico
-    | dcl1 '=>' ( inst (NL* inst)*)       # lambda
+    | ('nao'|'n\u00e3o') expr                   # nao_logico
+    | expr 'e' expr                             # e_logico
+    | expr 'ou' expr                            # ou_logico
+    | dcl1 '=>' ( inst (NL* inst)*)             # lambda
     | 'se' expr ('entao'|'ent\u00e3o')?
         exprlist
       (('senaose'|'sen\u00e3ose') expr ('entao'|'ent\u00e3o')?
         exprlist)*
       (('senao'|'sen\u00e3o')
         exprlist)?
-      'fim'                               # se
+      'fim'                                     # se
     | 'para' faixas ('se' expr)? ('faca'|'fa\u00e7a')?
         exprlist
-      'fim'                               # para_faca
+      'fim'                                     # para_faca
     | 'para' faixas ('se' expr)? 'gere'
         exprlist
-      'fim'                              # para_gere
+      'fim'                                     # para_gere
     | 'enquanto' expr ('faca'|'fa\u00e7a')?
         exprlist
-      'fim'                               # enquanto
+      'fim'                                     # enquanto
     | 'escolha' expr
         caso+
-      'fim'                               # escolha
-    | '(' expr ')'                      # paren
-    | '(' expr2 ')'                     # tupla
-    | '[' (expr1)? ']'                  # lista
-    | 'verdadeiro'                        # verdadeiro
-    | 'falso'                             # falso
+      'fim'                                     # escolha
+    | '(' expr ')'                              # paren
+    | '(' expr2 ')'                             # tupla
+    | '[' (expr1)? ']'                          # lista
+    | 'verdadeiro'                              # verdadeiro
+    | 'falso'                                   # falso
     ;
 
 caso: 'caso' expr ('se' expr)? '=>' exprlist;
