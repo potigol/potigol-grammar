@@ -33,7 +33,7 @@ grammar potigol;
 // Parser
 prog:  inst (NL* inst)* ;
 
-inst: decl | expr | cmd;
+inst: decl | expr | bloco | cmd;
 
 cmd : 'escreva' expr                  # escreva
     | 'imprima' expr                  # imprima
@@ -102,15 +102,11 @@ expr:
       (('senao'|'sen\u00e3o')
         exprlist)?
       'fim'                                     # se
-    | 'para' faixas ('se' expr)? ('faca'|'fa\u00e7a')?
-        exprlist
-      'fim'                                     # para_faca
+    | 'para' faixas ('se' expr)? bloco          # para_faca
     | 'para' faixas ('se' expr)? 'gere'
         exprlist
       'fim'                                     # para_gere
-    | 'enquanto' expr ('faca'|'fa\u00e7a')?
-        exprlist
-      'fim'                                     # enquanto
+    | 'enquanto' expr bloco                     # enquanto
     | 'escolha' expr
         caso+
       'fim'                                     # escolha
@@ -137,6 +133,8 @@ id2 : ID (',' ID)+ ;
 tipo2 : tipo (',' tipo)+ ;
 
 exprlist: (NL* inst)* ;
+
+bloco: ('faca' | 'fa\u0037a') exprlist 'fim' ;
 
 // Lexer
 ID: (ALPHA|ACENTO) (ALPHA|ACENTO|DIGIT)* ;
