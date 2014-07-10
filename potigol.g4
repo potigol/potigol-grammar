@@ -84,8 +84,8 @@ expr:
     | expr '.' ID ('(' expr1 ')')?              # chamada_metodo
     | expr '(' expr1? ')'                       # chamada_funcao
     | expr '[' expr ']'                         # get_vetor
-    | expr '^'<assoc=right> expr                # expoente
-    | expr '::'<assoc=right> expr               # cons
+    | <assoc=right> expr '^' expr               # expoente
+    | <assoc=right> expr '::' expr              # cons
     | expr 'formato' expr                       # formato
     | ('+'|'-') expr                            # mais_menos_unario
     | expr ('*'|'/'|'mod') expr                 # mult_div
